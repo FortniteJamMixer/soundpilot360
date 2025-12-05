@@ -17,6 +17,7 @@
     h1 {
       color: #4dd0ff;
       margin-bottom: 10px;
+      font-size: 32px;
     }
 
     #auth-container {
@@ -25,6 +26,7 @@
       border-radius: 10px;
       max-width: 300px;
       margin: 30px auto;
+      box-shadow: 0 0 20px #000;
     }
 
     input {
@@ -33,6 +35,7 @@
       margin: 6px 0;
       border: none;
       border-radius: 5px;
+      font-size: 16px;
     }
 
     button {
@@ -45,12 +48,14 @@
       color: #000;
       font-weight: bold;
       cursor: pointer;
+      font-size: 16px;
     }
 
     #auth-status {
       margin-top: 10px;
       font-size: 14px;
       color: #ccc;
+      min-height: 20px;
     }
   </style>
 </head>
@@ -65,7 +70,10 @@
     <h2>Account Login</h2>
 
     <input type="email" id="email" placeholder="Email" />
+
     <input type="password" id="password" placeholder="Password" />
+
+    <input type="password" id="passwordConfirm" placeholder="Confirm Password" />
 
     <button id="signup-btn">Create Account</button>
     <button id="login-btn">Login</button>
@@ -99,3 +107,4 @@
 
 </body>
 </html>
+
