@@ -4,13 +4,98 @@
   <meta charset="UTF-8" />
   <title>SoundPilot360 - v1.0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #4dd0ff;
+      margin-bottom: 10px;
+    }
+
+    #auth-container {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 300px;
+      margin: 30px auto;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 90%;
+      padding: 10px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 5px;
+      background: #4dd0ff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #auth-status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>SoundPilot360 (v1.0)</h1>
-  <p>Welcome! This is the beginning of your free DJ mixing software.</p>
 
-  <script src="app.js"></script>
+  <h1>SoundPilot360 (v1.0)</h1>
+  <p>Welcome Pilot! Log in to access your DJ cockpit.</p>
+
+  <!-- AUTH UI -->
+  <div id="auth-container">
+    <h2>Account Login</h2>
+
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <button id="signup-btn">Create Account</button>
+    <button id="login-btn">Login</button>
+
+    <p id="auth-status"></p>
+  </div>
+
+  <!-- FIREBASE SDK + INITIALIZATION -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+    // 🔥 REPLACE THESE WITH YOUR REAL FIREBASE CONFIG VALUES
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MSG_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.auth = getAuth(app);
+    window.storage = getStorage(app);
+  </script>
+
+  <!-- MAIN APP LOGIC -->
+  <script type="module" src="app.js"></script>
+
 </body>
 </html>
