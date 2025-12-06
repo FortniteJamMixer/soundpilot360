@@ -2,66 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SoundPilot360 (v1.4) – Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundPilot360 Login</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app-wrapper">
-    <header class="app-header">
-      <h1 class="logo">SoundPilot360 <span class="version">(v1.4 Auth)</span></h1>
-      <p class="tagline">Free DJ Mixing Software • Powered by your SoundPilot cloud.</p>
-    </header>
+  <h1>SoundPilot360 – Login</h1>
 
-    <main class="main-layout">
-      <section class="hero-copy">
-        <h2>Welcome Pilot!</h2>
-        <p>
-          Create a free account to unlock your DJ cockpit. Your playlists,
-          Camelot-keys, and mashups will live safely in the cloud.
-        </p>
-        <ul class="hero-list">
-          <li>🎧 Secure email + password login</li>
-          <li>📂 Per-user library storage (future step)</li>
-          <li>🎚 Built to expand into a full Serato / Rekordbox style mixer</li>
-        </ul>
-      </section>
+  <div class="auth-box">
+    <label>Email</label>
+    <input id="email" type="email" placeholder="Enter email" />
 
-      <section class="auth-card" id="auth-card">
-        <h2>Account Login</h2>
+    <label>Password</label>
+    <input id="password" type="password" placeholder="Enter password" />
 
-        <label class="field-label" for="email">Email</label>
-        <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+    <label>Confirm Password (Sign Up Only)</label>
+    <input id="passwordConfirm" type="password" placeholder="Confirm password" />
 
-        <label class="field-label" for="password">Password</label>
-        <input id="password" type="password" placeholder="Password" autocomplete="new-password" />
+    <button id="signup-btn">Sign Up</button>
+    <button id="login-btn">Log In</button>
 
-        <label class="field-label" for="passwordConfirm">Confirm Password (for new accounts)</label>
-        <input id="passwordConfirm" type="password" placeholder="Confirm password" autocomplete="new-password" />
-
-        <div class="button-row">
-          <button id="signup-btn" class="btn primary">Create Account</button>
-          <button id="login-btn" class="btn secondary">Login</button>
-        </div>
-
-        <p id="auth-status" class="status-line"></p>
-      </section>
-
-      <section class="cockpit-card hidden" id="cockpit-card">
-        <h2>DJ Cockpit</h2>
-        <p id="cockpit-welcome">Welcome, Pilot.</p>
-        <p class="cockpit-note">
-          You are authenticated with Firebase. Next step is wiring your track
-          library, Camelot wheel, and controller mapping into this cockpit.
-        </p>
-        <button id="logout-btn" class="btn danger">Log Out</button>
-      </section>
-    </main>
-
-    <footer class="app-footer">
-      <span>SoundPilot360 • Auth foundation ready • Mixer UI coming next.</span>
-    </footer>
+    <div id="auth-status"></div>
   </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDsHDcfgTOFDLi_XdngIL_g2RSQ7jzX6uw",
+      authDomain: "soundpilot360-6b29d.firebaseapp.com",
+      projectId: "soundpilot360-6b29d",
+      storageBucket: "soundpilot360-6b29d.appspot.com",
+      messagingSenderId: "474632587160",
+      appId: "1:474632587160:web:1290618fa4345258ffcded",
+      measurementId: "G-LX6VFB5NHS"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.auth = getAuth(app);
+  </script>
 
   <script type="module" src="app.js"></script>
 </body>
