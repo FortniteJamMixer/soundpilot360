@@ -2,90 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SoundPilot360 - v1.3</title>
+  <title>SoundPilot360 (v1.4) – Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      color: #4dd0ff;
-      text-align: center;
-      margin-top: 20px;
-      font-size: 32px;
-    }
-    #auth-container {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 300px;
-      margin: 40px auto;
-      box-shadow: 0 0 20px #000;
-      text-align: center;
-    }
-    #auth-container input,
-    #auth-container button {
-      width: 90%;
-      padding: 10px;
-      margin: 6px 0;
-      border-radius: 5px;
-      border: none;
-      font-size: 16px;
-    }
-    #auth-container button {
-      background: #4dd0ff;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    #auth-status {
-      margin-top: 10px;
-      min-height: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div class="app-wrapper">
+    <header class="app-header">
+      <h1 class="logo">SoundPilot360 <span class="version">(v1.4 Auth)</span></h1>
+      <p class="tagline">Free DJ Mixing Software • Powered by your SoundPilot cloud.</p>
+    </header>
 
-  <h1>SoundPilot360 (v1.3)</h1>
+    <main class="main-layout">
+      <section class="hero-copy">
+        <h2>Welcome Pilot!</h2>
+        <p>
+          Create a free account to unlock your DJ cockpit. Your playlists,
+          Camelot-keys, and mashups will live safely in the cloud.
+        </p>
+        <ul class="hero-list">
+          <li>🎧 Secure email + password login</li>
+          <li>📂 Per-user library storage (future step)</li>
+          <li>🎚 Built to expand into a full Serato / Rekordbox style mixer</li>
+        </ul>
+      </section>
 
-  <div id="auth-container">
-    <h2>Account Login</h2>
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <input type="password" id="passwordConfirm" placeholder="Confirm Password" />
-    <button id="signup-btn">Create Account</button>
-    <button id="login-btn">Login</button>
-    <p id="auth-status"></p>
+      <section class="auth-card" id="auth-card">
+        <h2>Account Login</h2>
+
+        <label class="field-label" for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+
+        <label class="field-label" for="password">Password</label>
+        <input id="password" type="password" placeholder="Password" autocomplete="new-password" />
+
+        <label class="field-label" for="passwordConfirm">Confirm Password (for new accounts)</label>
+        <input id="passwordConfirm" type="password" placeholder="Confirm password" autocomplete="new-password" />
+
+        <div class="button-row">
+          <button id="signup-btn" class="btn primary">Create Account</button>
+          <button id="login-btn" class="btn secondary">Login</button>
+        </div>
+
+        <p id="auth-status" class="status-line"></p>
+      </section>
+
+      <section class="cockpit-card hidden" id="cockpit-card">
+        <h2>DJ Cockpit</h2>
+        <p id="cockpit-welcome">Welcome, Pilot.</p>
+        <p class="cockpit-note">
+          You are authenticated with Firebase. Next step is wiring your track
+          library, Camelot wheel, and controller mapping into this cockpit.
+        </p>
+        <button id="logout-btn" class="btn danger">Log Out</button>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>SoundPilot360 • Auth foundation ready • Mixer UI coming next.</span>
+    </footer>
   </div>
 
-  <!-- FIREBASE INIT -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-    import { getStorage } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyADjdqQlr2OXmos4oxyg_SgL6pwsmaWt4",
-      authDomain: "soundpilot360.firebaseapp.com",
-      projectId: "soundpilot360",
-      storageBucket: "soundpilot360.firebasestorage.app",
-      messagingSenderId: "279590857864",
-      appId: "1:279590857864:web:64209df45cc8aa5dfcc033d",
-      measurementId: "G-DX67M57Q8Q"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    window.auth = getAuth(app);
-    window.storage = getStorage(app);
-  </script>
-
   <script type="module" src="app.js"></script>
-
 </body>
 </html>
