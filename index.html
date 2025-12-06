@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SoundPilot360 - v1.1</title>
+  <title>SoundPilot360 - v1.2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -32,7 +32,9 @@
       box-shadow: 0 0 20px #000;
       text-align: center;
     }
-    #auth-container input, #auth-container button {
+
+    #auth-container input,
+    #auth-container button {
       width: 90%;
       padding: 10px;
       margin: 6px 0;
@@ -40,6 +42,7 @@
       border: none;
       font-size: 16px;
     }
+
     #auth-container button {
       background: #4dd0ff;
       color: black;
@@ -52,7 +55,7 @@
       min-height: 20px;
     }
 
-    /* DJ COCKPIT UI */
+    /* DJ UI */
     #dj-ui {
       display: none;
       padding: 20px;
@@ -86,7 +89,8 @@
       margin: 15px 0;
     }
 
-    .controls button, .controls input {
+    .controls button,
+    .controls input {
       width: 100%;
       padding: 10px;
       margin: 5px 0;
@@ -111,10 +115,13 @@
       border-collapse: collapse;
       margin-top: 15px;
     }
-    th, td {
+
+    th,
+    td {
       padding: 8px;
       border-bottom: 1px solid #333;
     }
+
     th {
       background: #333;
     }
@@ -123,30 +130,31 @@
 
 <body>
 
-  <h1>SoundPilot360 (v1.1)</h1>
+  <h1>SoundPilot360 (v1.2)</h1>
 
   <!-- AUTH UI -->
   <div id="auth-container">
     <h2>Account Login</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <input type="password" id="passwordConfirm" placeholder="Confirm Password">
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <input type="password" id="passwordConfirm" placeholder="Confirm Password" />
     <button id="signup-btn">Create Account</button>
     <button id="login-btn">Login</button>
     <p id="auth-status"></p>
   </div>
 
-  <!-- DJ COCKPIT UI -->
+  <!-- DJ UI -->
   <div id="dj-ui">
 
     <div class="deck-container">
+
       <!-- Deck A -->
       <div class="deck" id="deckA">
         <h2>Deck A</h2>
         <div class="waveform" id="waveA"></div>
         <div class="controls">
           <button id="playA">Play / Pause</button>
-          <input type="range" id="volumeA" min="0" max="1" step="0.01" value="1">
+          <input type="range" id="volumeA" min="0" max="1" step="0.01" value="1" />
         </div>
       </div>
 
@@ -156,16 +164,18 @@
         <div class="waveform" id="waveB"></div>
         <div class="controls">
           <button id="playB">Play / Pause</button>
-          <input type="range" id="volumeB" min="0" max="1" step="0.01" value="1">
+          <input type="range" id="volumeB" min="0" max="1" step="0.01" value="1" />
         </div>
       </div>
+
     </div>
 
     <!-- Library -->
     <div id="library">
       <h2>Library</h2>
 
-      <input type="file" id="trackUpload" accept="audio/*" multiple>
+      <input type="file" id="trackUpload" accept="audio/*" multiple />
+
       <table>
         <thead>
           <tr>
@@ -192,7 +202,7 @@
       apiKey: "AIzaSyADjdqQlr2OXmos4oxyg_SgL6pwsmaWt4",
       authDomain: "soundpilot360.firebaseapp.com",
       projectId: "soundpilot360",
-      storageBucket: "soundpilot360.firebasestorage.app",
+      storageBucket: "soundpilot360.appspot.com",
       messagingSenderId: "279590857864",
       appId: "1:279590857864:web:64209df45cc8aa5dfcc033d",
       measurementId: "G-DX67M57Q8Q"
@@ -203,7 +213,7 @@
     window.storage = getStorage(app);
   </script>
 
-  <!-- MAIN APP LOGIC -->
+  <!-- MAIN APP -->
   <script type="module" src="app.js"></script>
 
 </body>
