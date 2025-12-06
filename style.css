@@ -1,3 +1,5 @@
+/* SoundPilot360 — Minimal Auth UI Styling */
+
 body {
   font-family: Arial, sans-serif;
   background: #101010;
@@ -7,4 +9,45 @@ body {
 
 h1 {
   color: #4dd0ff;
+}
+
+.auth-box {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #1b1b1b;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: none;
+  background: #333;
+  color: white;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: #2db6ff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+}
+
+button:hover {
+  background: #5bd3ff;
+}
+
+#auth-status {
+  margin-top: 15px;
+  color: #ffa;
+  text-align: center;
 }
