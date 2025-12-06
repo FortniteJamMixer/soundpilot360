@@ -1,44 +1,51 @@
-// app.js — Full debug version for SoundPilot360 Authentication (Firebase 12.6.0)
+// app.js — SoundPilot360 Authentication (Official Build)
 
+// Import from Firebase CDN
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-console.log("SoundPilot360 app.js loaded (Debug Mode)");
+// -----------------------------------------
+// 🔥 REPLACE THIS CONFIG WITH YOUR OWN
+// (paste your full Firebase config here)
+// -----------------------------------------
+const firebaseConfig = {
+  apiKey: "AIzaSyDsHDFgTF0DLi_Xdng1L_g2RSQ7jzX6uw",
+  authDomain: "soundpilot360-6b29d.firebaseapp.com",
+  projectId: "soundpilot360-6b29d",
+  storageBucket: "soundpilot360-6b29d.firebasestorage.app",
+  messagingSenderId: "474632587160",
+  appId: "1:474632587160:web:1290618fa4345258ffcded",
+  measurementId: "G-LX6VFBSNHS"
+};
 
-// Firebase auth instance (created in index.html)
-const auth = window.auth;
+// Initialize Firebase + Auth
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-// DOM elements
+console.log("SoundPilot360 Authentication Loaded");
+
+// DOM
 const emailInput = document.getElementById("email");
 const passInput = document.getElementById("password");
 const passConfirmInput = document.getElementById("passwordConfirm");
 const status = document.getElementById("auth-status");
 
-// Helper
-function show(message) {
-  status.textContent = message;
-  console.log("AUTH:", message);
+function show(msg) {
+  status.textContent = msg;
+  console.log("AUTH:", msg);
 }
 
-// GLOBAL ERROR CATCHER
-window.addEventListener("error", (event) => {
-  console.error("GLOBAL ERROR:", event.error);
-});
-window.addEventListener("unhandledrejection", (event) => {
-  console.error("UNHANDLED PROMISE:", event.reason);
-});
-
-// SIGNUP FLOW
+// SIGNUP
 document.getElementById("signup-btn").onclick = async () => {
   const email = emailInput.value.trim();
   const pass = passInput.value;
   const confirm = passConfirmInput.value;
-
-  show("");
 
   if (!email) return show("Please enter an email.");
   if (!pass) return show("Please enter a password.");
@@ -47,13 +54,10 @@ document.getElementById("signup-btn").onclick = async () => {
   show("Creating account...");
 
   try {
-    console.log("SIGNUP TRY:", email);
-    const result = await createUserWithEmailAndPassword(auth, email, pass);
-    console.log("SIGNUP RESULT:", result);
-    show("Account created! Logged in as " + result.user.email);
+    await createUserWithEmailAndPassword(auth, email, pass);
+    show("Account created! Logging in…");
   } catch (err) {
-    console.error("SIGNUP ERROR OBJECT:", err);
-    show(`Signup error: ${err.code} — ${err.message}`);
+    show(err.message);
   }
 };
 
@@ -67,22 +71,24 @@ document.getElementById("login-btn").onclick = async () => {
   show("Logging in...");
 
   try {
-    console.log("LOGIN TRY:", email);
-    const result = await signInWithEmailAndPassword(auth, email, pass);
-    console.log("LOGIN RESULT:", result);
-    show("Logged in as " + result.user.email);
+    await signInWithEmailAndPassword(auth, email, pass);
   } catch (err) {
-    console.error("LOGIN ERROR OBJECT:", err);
-    show(`Login error: ${err.code} — ${err.message}`);
+    show(err.message);
   }
 };
 
-// LISTEN FOR LOGIN STATE CHANGES
+// LOGOUT
+document.getElementById("logout-btn")?.addEventListener("click", async () => {
+  await signOut(auth);
+});
+
+// WATCH AUTH STATE
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("AUTH STATE: LOGGED IN →", user.email);
-    show("Logged in as " + user.email);
+    show("Logged in as: " + user.email);
+    document.body.classList.add("logged-in");
   } else {
-    console.log("AUTH STATE: LOGGED OUT");
+    show("You're logged out.");
+    document.body.classList.remove("logged-in");
   }
 });
