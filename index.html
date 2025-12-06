@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SoundPilot360 - v1.2</title>
+  <title>SoundPilot360 - v1.3</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -12,17 +12,13 @@
       color: white;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
     }
-
     h1 {
       color: #4dd0ff;
       text-align: center;
       margin-top: 20px;
       font-size: 32px;
     }
-
-    /* AUTH UI */
     #auth-container {
       background: #1a1a1a;
       padding: 20px;
@@ -32,7 +28,6 @@
       box-shadow: 0 0 20px #000;
       text-align: center;
     }
-
     #auth-container input,
     #auth-container button {
       width: 90%;
@@ -42,97 +37,23 @@
       border: none;
       font-size: 16px;
     }
-
     #auth-container button {
       background: #4dd0ff;
       color: black;
       font-weight: bold;
       cursor: pointer;
     }
-
     #auth-status {
       margin-top: 10px;
       min-height: 20px;
-    }
-
-    /* DJ UI */
-    #dj-ui {
-      display: none;
-      padding: 20px;
-    }
-
-    .deck-container {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 30px;
-      gap: 20px;
-    }
-
-    .deck {
-      background: #1c1c1c;
-      padding: 20px;
-      border-radius: 10px;
-      width: 45%;
-      box-shadow: 0 0 10px #000;
-    }
-
-    .deck h2 {
-      text-align: center;
-      color: #4dd0ff;
-    }
-
-    .waveform {
-      background: #000;
-      height: 100px;
-      border: 1px solid #333;
-      border-radius: 5px;
-      margin: 15px 0;
-    }
-
-    .controls button,
-    .controls input {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
-      border: none;
-    }
-
-    #library {
-      background: #1c1c1c;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 40px;
-      box-shadow: 0 0 10px #000;
-    }
-
-    #trackUpload {
-      margin-bottom: 15px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    th,
-    td {
-      padding: 8px;
-      border-bottom: 1px solid #333;
-    }
-
-    th {
-      background: #333;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>SoundPilot360 (v1.2)</h1>
+  <h1>SoundPilot360 (v1.3)</h1>
 
-  <!-- AUTH UI -->
   <div id="auth-container">
     <h2>Account Login</h2>
     <input type="email" id="email" placeholder="Email" />
@@ -141,55 +62,6 @@
     <button id="signup-btn">Create Account</button>
     <button id="login-btn">Login</button>
     <p id="auth-status"></p>
-  </div>
-
-  <!-- DJ UI -->
-  <div id="dj-ui">
-
-    <div class="deck-container">
-
-      <!-- Deck A -->
-      <div class="deck" id="deckA">
-        <h2>Deck A</h2>
-        <div class="waveform" id="waveA"></div>
-        <div class="controls">
-          <button id="playA">Play / Pause</button>
-          <input type="range" id="volumeA" min="0" max="1" step="0.01" value="1" />
-        </div>
-      </div>
-
-      <!-- Deck B -->
-      <div class="deck" id="deckB">
-        <h2>Deck B</h2>
-        <div class="waveform" id="waveB"></div>
-        <div class="controls">
-          <button id="playB">Play / Pause</button>
-          <input type="range" id="volumeB" min="0" max="1" step="0.01" value="1" />
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Library -->
-    <div id="library">
-      <h2>Library</h2>
-
-      <input type="file" id="trackUpload" accept="audio/*" multiple />
-
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>BPM</th>
-            <th>Key</th>
-            <th>Camelot</th>
-            <th>Load</th>
-          </tr>
-        </thead>
-        <tbody id="libraryBody"></tbody>
-      </table>
-    </div>
-
   </div>
 
   <!-- FIREBASE INIT -->
@@ -202,7 +74,7 @@
       apiKey: "AIzaSyADjdqQlr2OXmos4oxyg_SgL6pwsmaWt4",
       authDomain: "soundpilot360.firebaseapp.com",
       projectId: "soundpilot360",
-      storageBucket: "soundpilot360.appspot.com",
+      storageBucket: "soundpilot360.firebasestorage.app",
       messagingSenderId: "279590857864",
       appId: "1:279590857864:web:64209df45cc8aa5dfcc033d",
       measurementId: "G-DX67M57Q8Q"
@@ -213,7 +85,6 @@
     window.storage = getStorage(app);
   </script>
 
-  <!-- MAIN APP -->
   <script type="module" src="app.js"></script>
 
 </body>
